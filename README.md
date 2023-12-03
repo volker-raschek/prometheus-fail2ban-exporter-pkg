@@ -4,8 +4,8 @@
 [![Build Status](https://drone.cryptic.systems/api/badges/volker.raschek/prometheus-fail2ban-exporter-pkg/status.svg)](https://drone.cryptic.systems/volker.raschek/prometheus-fail2ban-exporter-pkg)
 ![AUR votes](https://img.shields.io/aur/votes/prometheus-fail2ban-exporter)
 
-This repository contains build files to build the Arch Linux package `prometheus-fail2ban-exporter`. Instead of building the
-package yourself, it can also be obtained from the following private repository. More detailed are described
+This repository contains build files to build the Arch Linux package `prometheus-fail2ban-exporter`. Instead of building
+the package yourself, it can also be obtained from the following private repository. More detailed are described
 [here](#obtaining-pre-built-packages-from-a-repository).
 
 ## Build
