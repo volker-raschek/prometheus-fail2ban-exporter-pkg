@@ -1,7 +1,7 @@
 pkgbase = prometheus-fail2ban-exporter
 	pkgdesc = Fail2Ban exporter for Fail2Ban metrics
 	pkgver = 0.7.2
-	pkgrel = 5
+	pkgrel = 6
 	url = https://gitlab.com/hectorjsmith/fail2ban-prometheus-exporter
 	arch = armv7h
 	arch = aarch64
