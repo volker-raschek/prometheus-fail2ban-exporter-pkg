@@ -1,7 +1,6 @@
 # prometheus-fail2ban-exporter
 
 ![AUR version](https://img.shields.io/aur/version/prometheus-fail2ban-exporter?label=AUR)
-[![Build Status](https://drone.cryptic.systems/api/badges/volker.raschek/prometheus-fail2ban-exporter-pkg/status.svg)](https://drone.cryptic.systems/volker.raschek/prometheus-fail2ban-exporter-pkg)
 ![AUR votes](https://img.shields.io/aur/votes/prometheus-fail2ban-exporter)
 
 This repository contains build files to build the Arch Linux package `prometheus-fail2ban-exporter`. Instead of building
