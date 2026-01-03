@@ -24,12 +24,46 @@ b2sums=('4156605955d2345520b2ffc5ef39c749b0fad350fa5c8cbf3139817335ed1c1d165fa97
         '3d6adfad59d88ff99b1e4f924651746e62e562fefa0360f02fe1091e920b0bb74e4f54930ff1f863b9004a490e90c78dc92d16ca234b5b536315b7fd45cbf4e4'
         '0334daf62d9980a8165f8701041af27889e5501cba3d5790fdae03a812d6fd3a48b6d9dcf67bd25fb56ac762d9332f27c7e4ea08c56b0f5e657268caf7018ee8')
 
+prepare() {
+  cd ${_pkgname}-${_pkgver}
+
+  export GONOSUMDB="${GONOSUMDB}"
+  export GOPATH="${srcdir}"
+  export GOPROXY="${GOPROXY}"
+
+  env | sort | grep -E '^C?GO'
+
+  go mod download -modcacherw
+}
+
 build() {
   cd "$_pkgname-$_pkgver"
+
+  # https://wiki.archlinux.org/title/Go_package_guidelines
+  export CGO_CPPFLAGS="${CPPFLAGS}"
+  export CGO_CFLAGS="${CFLAGS}"
+  export CGO_CXXFLAGS="${CXXFLAGS}"
+  export CGO_LDFLAGS="${LDFLAGS}"
+
+  export GONOSUMDB="${GONOSUMDB}"
+  export GOPATH="${srcdir}"
+  export GOPROXY="${GOPROXY}"
+
+  env | sort | grep -E '^C?GO'
+
   go build -v \
-    -buildmode=pie \
     -trimpath \
-    -o $pkgname .
+    -buildmode=pie \
+    -mod=readonly \
+    -modcacherw \
+    -ldflags "\
+      -X main.version=$pkgver \
+      -X main.commit=$(git rev-parse HEAD) \
+      -X main.date=$(date --iso-8601=seconds) \
+      -X main.builtBy=AUR \
+    " \
+    -o $pkgname \
+    .
 }
 
 package() {
