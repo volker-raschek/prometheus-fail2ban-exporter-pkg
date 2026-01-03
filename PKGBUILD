@@ -2,7 +2,7 @@
 
 pkgname=prometheus-fail2ban-exporter
 _pkgname=fail2ban-prometheus-exporter
-pkgver=0.7.2
+pkgver=0.7.2 # renovate: datasource=gitlab-releases depName=hectorjsmith/fail2ban-prometheus-exporter
 pkgrel=6
 pkgdesc="Fail2Ban exporter for Fail2Ban metrics"
 arch=('armv7h' 'aarch64' 'x86_64')
