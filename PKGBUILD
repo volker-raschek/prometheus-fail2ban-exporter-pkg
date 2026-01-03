@@ -3,6 +3,7 @@
 pkgname=prometheus-fail2ban-exporter
 _pkgname=fail2ban-prometheus-exporter
 pkgver=0.10.3 # renovate: datasource=gitlab-releases depName=hctrdev/fail2ban-prometheus-exporter
+_pkgver=v${pkgver}
 pkgrel=1
 pkgdesc="Fail2Ban exporter for Fail2Ban metrics"
 arch=('armv7h' 'aarch64' 'x86_64')
@@ -11,7 +12,7 @@ license=('MIT')
 makedepends=('go')
 optdepends=('fail2ban: for monitoring a local fail2ban daemon')
 source=(
-  "$url/-/archive/v$pkgver/$_pkgname-v$pkgver.tar.gz"
+  "$url/-/archive/$_pkgver/$_pkgname-$_pkgver.tar.gz"
   'prometheus-fail2ban-exporter'
   'systemd.service'
 )
@@ -24,7 +25,7 @@ b2sums=('4156605955d2345520b2ffc5ef39c749b0fad350fa5c8cbf3139817335ed1c1d165fa97
         '0334daf62d9980a8165f8701041af27889e5501cba3d5790fdae03a812d6fd3a48b6d9dcf67bd25fb56ac762d9332f27c7e4ea08c56b0f5e657268caf7018ee8')
 
 build() {
-  cd "$_pkgname-$pkgver/src"
+  cd "$_pkgname-$_pkgver"
   go build -v \
     -buildmode=pie \
     -trimpath \
@@ -36,12 +37,12 @@ package() {
   install -D --mode 0644 systemd.service "$pkgdir/usr/lib/systemd/system/$pkgname.service"
 
   # binary
-  install -D --mode 0755 --target-directory "$pkgdir/usr/bin" "$_pkgname-$pkgver/src/$pkgname"
+  install -D --mode 0755 --target-directory "$pkgdir/usr/bin" "$_pkgname-$_pkgver/$pkgname"
 
   # extra args
   # NOTE: Set restrict file permissions by default to protect optional basic auth credentials
-  install -D --mode 0600 --target-directory "$pkgdir/etc/conf.d" prometheus-fail2ban-exporter
+  install -D --mode 0600 --target-directory "$pkgdir/etc/conf.d" "$pkgname"
 
   # license
-  install -D --mode 0755 --target-directory "$pkgdir/usr/share/licenses/$pkgname" "$_pkgname-$pkgver/LICENSE"
+  install -D --mode 0755 --target-directory "$pkgdir/usr/share/licenses/$pkgname" "$_pkgname-$_pkgver/LICENSE"
 }
