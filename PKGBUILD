@@ -57,6 +57,7 @@ build() {
     -mod=readonly \
     -modcacherw \
     -ldflags "\
+      -linkmode external \
       -X main.version=$pkgver \
       -X main.commit=$(git rev-parse HEAD) \
       -X main.date=$(date --iso-8601=seconds) \
